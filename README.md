@@ -1,349 +1,973 @@
-# Attendly
+# Attendly:
+
+
 
 **Track every lecture. Stay ahead of your attendance.**
 
-Attendly is a student attendance tracker and timetable management web application.
+Attendly is a full-stack student attendance tracker and timetable management web application. It helps students manage subjects, organize weekly timetables, mark daily attendance, track attendance performance, analyze trends, manage tasks, and maintain their profile and preferences.
 
-This repository currently contains:
-- **Phase 1** — project scaffold, marketing/landing experience, and a production-ready API skeleton.
-- **Phase 2** — PostgreSQL + Prisma, JWT authentication, session persistence, and protected routes.
-- **Phase 3** — user-scoped Subjects CRUD with validation, Zustand state, dialogs, and toast feedback.
-- **Phase 4** — user-scoped Weekly Timetable Management connected to Subjects, persisted in PostgreSQL.
+The application uses real PostgreSQL database data and provides a responsive experience across desktop, tablet, and mobile devices.
 
-Each completed phase remains deployable without replacing the existing authentication, subject, frontend, or backend architecture.
+---
+
+## Features
+
+### Authentication
+
+- User registration
+- User login
+- JWT authentication
+- Protected routes
+- Session persistence
+- Secure password hashing with bcrypt
+- Authenticated user profile
+- Logout functionality
+- Backend validation and error handling
+
+---
+
+### Dashboard
+
+- Overview of attendance performance
+- Subject-based attendance information
+- Quick access to important features
+- Visual attendance statistics
+- Responsive dashboard layout
+- Loading and empty states
+
+---
+
+### Subjects Management
+
+Users can manage their academic subjects.
+
+Features include:
+
+- Create subjects
+- View subjects
+- Update subjects
+- Delete subjects
+- Subject code
+- Faculty information
+- Custom subject colors
+- User-specific subject data
+- Form validation
+- Confirmation dialogs
+- Toast notifications
+- Loading states
+- Empty states
+- Error states
+
+---
+
+### Weekly Timetable
+
+Users can create and manage their weekly lecture schedule.
+
+Features include:
+
+- Create lectures
+- Update lectures
+- Delete lectures
+- Select subjects for lectures
+- Select day of the week
+- Set lecture start time
+- Set lecture end time
+- Add room information
+- Weekly timetable view
+- Persistent timetable data
+- User-specific timetable
+- Responsive timetable layout
+- Loading states
+- Empty states
+- Error states
+
+---
+
+### Attendance Management
+
+Users can record and manage their attendance.
+
+Features include:
+
+- Mark attendance as Present
+- Mark attendance as Absent
+- Daily attendance tracking
+- Subject-wise attendance
+- Attendance history
+- Update attendance records
+- Delete attendance records
+- Manual attendance records
+- Attendance linked with subjects
+- Persistent PostgreSQL data
+- Toast notifications
+- Loading states
+- Empty states
+- Error states
+
+---
+
+### Attendance Analytics
+
+Attendly provides analytics using real attendance data stored in PostgreSQL.
+
+Features include:
+
+#### Overall Attendance
+
+- Overall attendance percentage
+- Total present lectures
+- Total absent lectures
+- Total lectures
+- Best-performing subject
+- Lowest-performing subject
+- Large donut chart
+
+#### Subject Analytics
+
+- Subject selection dropdown
+- Subject attendance percentage
+- Present lectures
+- Absent lectures
+- Total lectures
+- Subject donut chart
+- Attendance trend data
+
+#### Subject Comparison
+
+- Comparison of all subjects
+- Recharts BarChart
+- Attendance percentage per subject
+- 75% reference line
+
+Attendance colors:
+
+- Above 75% — Forest Green
+- Between 60% and 75% — Light Green
+- Below 60% — Peach
+
+#### Attendance Summary
+
+Summary cards display:
+
+- Best Subject
+- Lowest Subject
+- Overall Attendance
+- Total Classes
+
+#### Attendance Insights
+
+Rule-based attendance insights are generated without using an AI API.
+
+Examples include:
+
+- Whether overall attendance is above or below 75%
+- Lowest attendance subject
+- Number of lectures required to improve attendance
+- Subject-specific attendance recommendations
+
+All calculations handle:
+
+- No attendance
+- Zero attendance
+- Only present records
+- Only absent records
+- Exactly 75%
+- Multiple subjects
+- Division-by-zero protection
+
+---
+
+### To-Do Management
+
+Users can manage academic and personal tasks.
+
+Features include:
+
+- Create tasks
+- Update tasks
+- Delete tasks
+- Mark tasks as complete
+- Mark tasks as pending
+- Task priorities
+- Task organization
+- Persistent database storage
+- User-specific tasks
+- Loading states
+- Empty states
+- Error handling
+
+---
+
+### Profile
+
+Users can manage their profile information.
+
+Features include:
+
+- View profile
+- Display profile picture
+- Display name
+- Display email
+- Update name
+- Update profile image URL
+- Authenticated profile API
+- Logout access
+- Profile loading state
+- Profile update toast notifications
+
+---
+
+### Settings
+
+The application provides simple user settings.
+
+Sections include:
+
+- Appearance
+- Notifications
+- Account
+
+Features include:
+
+- Theme preferences where supported
+- Notification preferences stored locally
+- Account management
+- Logout functionality
+
+---
+
+### Responsive Design
+
+Attendly is designed for multiple screen sizes.
+
+#### Desktop
+
+- Persistent sidebar navigation
+- Full dashboard layout
+- Responsive charts and tables
+
+#### Tablet
+
+- Collapsible navigation
+- Optimized content layout
+- Responsive cards and charts
+
+#### Mobile
+
+- Mobile navigation or drawer
+- Responsive forms
+- Scrollable timetable where required
+- Responsive charts
+- Mobile-friendly buttons and dialogs
+
+The following pages are optimized for responsive use:
+
+- Dashboard
+- Subjects
+- Timetable
+- Attendance
+- Analytics
+- To-Dos
+- Profile
+- Settings
+
+---
+
+### UI and UX
+
+The application uses a consistent design system.
+
+Color palette:
+
+- Forest Green: `#224F10`
+- Light Green: `#E8F2E3`
+- Cream: `#FFF4E8`
+- Peach: `#FFD6C2`
+
+UI improvements include:
+
+- Consistent spacing
+- Consistent typography
+- Reusable cards
+- Reusable buttons
+- Reusable inputs
+- Accessible dialogs
+- Toast notifications
+- Skeleton loading states
+- Empty states
+- Error states
+- Responsive layouts
+- Visible focus states
+
+---
+
+### Accessibility
+
+Attendly includes accessibility improvements such as:
+
+- Keyboard navigation
+- Visible focus states
+- Accessible form labels
+- ARIA labels where required
+- Accessible buttons
+- Accessible dialogs
+- Improved color contrast
+- Semantic UI structure
+
+---
+
+### Loading States
+
+Skeleton loading states are available across the application where appropriate.
+
+Supported areas include:
+
+- Dashboard
+- Subjects
+- Timetable
+- Attendance
+- Analytics
+- Profile
+- To-Dos
+
+---
+
+### Error States
+
+The application uses reusable error state components.
+
+Error states support:
+
+- Error title
+- Error message
+- Retry functionality
+
+---
+
+### Empty States
+
+Reusable empty state components provide a consistent experience when no data is available.
+
+Used across features such as:
+
+- Subjects
+- Timetable
+- Attendance
+- Analytics
+- To-Dos
 
 ---
 
 ## Tech Stack
 
-**Frontend**
-- React 19 + TypeScript
-- Vite
-- Tailwind CSS v4
-- React Router
-- React Hook Form + Zod (form state & validation)
-- Zustand (auth state, persisted)
-- Lucide React (icons)
+### Frontend
 
-**Backend**
-- Node.js + Express
+- React
 - TypeScript
-- PostgreSQL + Prisma ORM
-- JWT authentication (`jsonwebtoken`)
-- bcrypt password hashing (`bcryptjs`)
-- Zod (request validation)
+- Vite
+- Tailwind CSS
+- React Router
+- Zustand
+- React Hook Form
+- Zod
+- Lucide React
+- Recharts
+
+### Backend
+
+- Node.js
+- Express
+- TypeScript
+- PostgreSQL
+- Prisma ORM
+- JWT Authentication
+- bcrypt
+- Zod validation
 
 ---
 
 ## Project Structure
 
-```
+```text
 attendly/
-├── client/                    # React frontend
+│
+├── client/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── ui/            # Reusable primitives (Button, Input, FormField, ...)
-│   │   │   ├── landing/       # Landing-page sections
-│   │   │   ├── auth/          # ProtectedRoute, AuthLoadingScreen
-│   │   │   ├── toast/         # Toast notification system
-│   │   │   ├── subjects/      # Subject CRUD UI
-│   │   │   └── timetable/     # Weekly timetable UI
-│   │   ├── pages/             # Route-level pages including Subjects and Timetable
-│   │   ├── layouts/           # Shared page layouts
-│   │   ├── store/             # Zustand auth store (persisted)
-│   │   ├── schemas/           # Zod schemas for form validation
-│   │   ├── services/          # API client + endpoint wrappers
-│   │   ├── hooks/             # Reusable React hooks
-│   │   ├── types/             # Shared TypeScript types
-│   │   └── utils/             # Helper functions
-│   ├── .env.example
-│   └── package.json
+│   │   │   ├── analytics/
+│   │   │   ├── attendance/
+│   │   │   ├── auth/
+│   │   │   ├── dashboard/
+│   │   │   ├── layout/
+│   │   │   ├── subjects/
+│   │   │   ├── timetable/
+│   │   │   ├── todos/
+│   │   │   ├── toast/
+│   │   │   └── ui/
+│   │   │
+│   │   ├── layouts/
+│   │   │   └── AppLayout.tsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── DashboardPage.tsx
+│   │   │   ├── SubjectsPage.tsx
+│   │   │   ├── TimetablePage.tsx
+│   │   │   ├── AttendancePage.tsx
+│   │   │   ├── AnalyticsPage.tsx
+│   │   │   ├── TodosPage.tsx
+│   │   │   ├── ProfilePage.tsx
+│   │   │   └── SettingsPage.tsx
+│   │   │
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   ├── store/
+│   │   ├── types/
+│   │   ├── utils/
+│   │   └── hooks/
+│   │
+│   ├── .env
+│   ├── package.json
+│   └── vite.config.ts
 │
-├── server/                    # Express backend
+├── server/
 │   ├── prisma/
-│   │   ├── schema.prisma      # User model + datasource config
-│   │   └── migrations/        # SQL migrations
+│   │   ├── schema.prisma
+│   │   └── migrations/
+│   │
 │   ├── src/
-│   │   ├── routes/            # Route definitions (mounted under /api)
-│   │   ├── controllers/       # Request handlers
-│   │   ├── middleware/        # authenticate, validate, error handling, 404
-│   │   ├── validators/        # Zod schemas for request bodies
-│   │   ├── config/            # env + Prisma client singleton
-│   │   ├── types/             # Shared server types (SafeUser, Express augmentation)
-│   │   └── utils/             # ApiError, asyncHandler, password hashing, JWT
-│   ├── .env.example
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── routes/
+│   │   ├── types/
+│   │   ├── utils/
+│   │   └── validators/
+│   │
+│   ├── .env
 │   └── package.json
 │
 └── README.md
-```
+````
 
 ---
 
 ## Prerequisites
 
-- Node.js 18+ and npm
-- PostgreSQL 13+ (local install, or a hosted instance such as Supabase, Neon, or Railway)
+Before running Attendly, install:
+
+* Node.js 18 or later
+* npm
+* PostgreSQL 13 or later
+
+You can use:
+
+* Local PostgreSQL
+* Railway PostgreSQL
+* Neon
+* Supabase
+* Any compatible PostgreSQL provider
 
 ---
 
 ## Installation
 
-```bash
-# Client
-cd client
-npm install
+Clone the repository:
 
-# Server
-cd ../server
-npm install
+```bash
+git clone <your-repository-url>
+cd attendly
 ```
 
----
+Install server dependencies:
 
-## PostgreSQL Setup
-
-You need a running PostgreSQL database before the server will start.
-
-**Option A — local install**
-```bash
-# macOS (Homebrew)
-brew install postgresql@16
-brew services start postgresql@16
-createdb attendly
-
-# Ubuntu/Debian
-sudo apt-get install postgresql
-sudo service postgresql start
-sudo -u postgres createdb attendly
-```
-
-**Option B — hosted database**
-Create a free Postgres instance on a provider like [Neon](https://neon.tech), [Supabase](https://supabase.com), or [Railway](https://railway.app), and copy the connection string it gives you into `DATABASE_URL`.
-
-Either way, set `server/.env`'s `DATABASE_URL` to point at it (see [Environment Variables](#environment-variables) below).
-
----
-
-## Prisma Commands
-
-Run these from the `server/` directory.
-
-| Command | What it does |
-|---|---|
-| `npm run prisma:generate` | Generates the Prisma Client from `prisma/schema.prisma`. Run this after every `npm install` and after any schema change. |
-| `npm run prisma:migrate` | Creates and applies a new migration in development (`prisma migrate dev`). Use this the first time you set up the database, and whenever you change `schema.prisma`. |
-| `npm run prisma:migrate:deploy` | Applies existing migrations without prompting — the command to run in production/CI (`prisma migrate deploy`). |
-| `npm run prisma:studio` | Opens Prisma Studio, a GUI for browsing/editing your database. |
-
-**First-time setup**, after installing dependencies and setting `DATABASE_URL`:
 ```bash
 cd server
-npm run prisma:generate
-npm run prisma:migrate
+npm install
 ```
-This generates the client and applies all pending migrations, including users, subjects, and timetable lectures.
 
-> `npx prisma generate` and `npx prisma migrate` download a small database engine binary on first run — this requires normal internet access, which any standard local machine or CI runner has. It's a one-time step for the project, not something you need to repeat per-install (beyond re-running `generate` after `npm install`, since generated client files aren't committed to git).
+Install client dependencies:
+
+```bash
+cd ../client
+npm install
+```
 
 ---
 
 ## Environment Variables
 
-Each app has its own `.env.example`. Copy it to `.env` before running.
+### Client
 
-```bash
-cp client/.env.example client/.env
-cp server/.env.example server/.env
+Create:
+
+```text
+client/.env
 ```
 
-### `client/.env`
+Add:
 
-| Variable | Description | Default |
-|---|---|---|
-| `VITE_API_URL` | Base URL of the Attendly API | `http://localhost:5000` |
+```env
+VITE_API_URL=http://localhost:5000
+```
 
-### `server/.env`
+---
 
-| Variable | Description | Default |
-|---|---|---|
-| `PORT` | Port the Express server listens on | `5000` |
-| `NODE_ENV` | `development` \| `production` \| `test` | `development` |
-| `CLIENT_URL` | Client origin, used to configure CORS | `http://localhost:5173` |
-| `DATABASE_URL` | PostgreSQL connection string used by Prisma | — (required) |
-| `JWT_SECRET` | Secret used to sign and verify JWTs — use a long random string | — (required) |
-| `JWT_EXPIRES_IN` | How long issued JWTs stay valid (e.g. `1h`, `7d`) | `7d` |
+### Server
 
-Generate a strong `JWT_SECRET` with:
+Create:
+
+```text
+server/.env
+```
+
+Example:
+
+```env
+PORT=5000
+NODE_ENV=development
+
+CLIENT_URL=http://localhost:5173
+
+DATABASE_URL="your_postgresql_connection_string"
+
+JWT_SECRET="your_secure_jwt_secret"
+
+JWT_EXPIRES_IN=7d
+```
+
+If Vite runs on another port such as `5174` or `5175`, make sure that origin is allowed by the server CORS configuration.
+
+---
+
+## Database Setup
+
+From the `server` directory:
+
 ```bash
-node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
+npm run prisma:generate
+```
+
+Apply migrations:
+
+```bash
+npm run prisma:migrate:deploy
+```
+
+For development where you need to create a new migration:
+
+```bash
+npm run prisma:migrate
+```
+
+Open Prisma Studio:
+
+```bash
+npm run prisma:studio
 ```
 
 ---
 
 ## Local Development
 
-Run both apps in separate terminals.
+Run the backend and frontend in separate terminals.
 
-**Terminal 1 — API server**
+### Terminal 1 — Backend
+
+```bash
+cd attendly/server
+npm install
+npm run prisma:generate
+npm run prisma:migrate:deploy
+npm run dev
+```
+
+The API runs on:
+
+```text
+http://localhost:5000
+```
+
+---
+
+### Terminal 2 — Frontend
+
+```bash
+cd attendly/client
+npm install
+npm run dev
+```
+
+Vite will display the local application URL.
+
+Usually:
+
+```text
+http://localhost:5173
+```
+
+or another available port such as:
+
+```text
+http://localhost:5174
+```
+
+or:
+
+```text
+http://localhost:5175
+```
+
+Open the URL shown in the Vite terminal.
+
+---
+
+## Production Build
+
+### Backend
+
 ```bash
 cd server
-npm run prisma:generate   # first time only, or after schema changes
-npm run prisma:migrate    # first time only, or after schema changes
-npm run dev
+npm run prisma:generate
+npm run build
+npm start
 ```
-Runs on `http://localhost:5000` with hot reload (via `tsx watch`).
 
-**Terminal 2 — Client**
+Check TypeScript:
+
+```bash
+npm run typecheck
+```
+
+---
+
+### Frontend
+
 ```bash
 cd client
-npm run dev
+npm run build
 ```
-Runs on `http://localhost:5173` with Vite's dev server and HMR.
 
-Visit `http://localhost:5173` and try the full flow: **Sign up → Dashboard → Logout → Log in again.**
+Preview the production build:
+
+```bash
+npm run preview
+```
 
 ---
 
 ## API Reference
 
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| GET | `/` | — | API welcome message |
-| GET | `/api/health` | — | Health check — `{ success, message }` |
-| POST | `/api/auth/register` | — | Create an account. Body: `{ name, email, password }`. Returns `{ user, token }`. |
-| POST | `/api/auth/login` | — | Log in. Body: `{ email, password }`. Returns `{ user, token }`. |
-| GET | `/api/auth/me` | Bearer token | Returns the authenticated user. |
-| POST | `/api/auth/logout` | — | Stateless logout acknowledgement (see note below). |
-| GET | `/api/subjects` | Bearer token | List the authenticated user's subjects. |
-| POST | `/api/subjects` | Bearer token | Create a subject. Body: `{ name, code?, faculty?, color? }`. |
-| GET | `/api/subjects/:id` | Bearer token | Get one subject (`404` if missing, `403` if it belongs to another user). |
-| PUT | `/api/subjects/:id` | Bearer token | Update a subject. Same ownership rules as GET. Blank optional fields clear that field. |
-| DELETE | `/api/subjects/:id` | Bearer token | Delete a subject. Same ownership rules as GET. |
-| GET | `/api/timetable` | Bearer token | List the authenticated user's lectures with subject details. |
-| POST | `/api/timetable` | Bearer token | Create a lecture. Body: `{ subjectId, dayOfWeek, startTime, endTime, room? }`. |
-| PUT | `/api/timetable/:id` | Bearer token | Update an owned lecture; subject ownership and resulting time range are revalidated. |
-| DELETE | `/api/timetable/:id` | Bearer token | Delete an owned lecture. |
-| * | `/api/*` (unmatched) / any unmatched route | — | Returns a consistent 404 JSON payload |
+### Authentication
 
-**Authentication:** send `Authorization: Bearer <token>` on any protected request. Tokens are stateless JWTs — there is no server-side session store or revocation list in this phase, so `/api/auth/logout` exists mainly as a clean, explicit endpoint for the client to call; the actual "logging out" happens by the client discarding its token. Passwords are hashed with bcrypt (12 salt rounds) and `passwordHash` is never included in any API response.
+| Method | Endpoint             | Description            |
+| ------ | -------------------- | ---------------------- |
+| POST   | `/api/auth/register` | Create a new account   |
+| POST   | `/api/auth/login`    | Login                  |
+| GET    | `/api/auth/me`       | Get authenticated user |
+| POST   | `/api/auth/logout`   | Logout                 |
 
 ---
 
-## Build Commands
+### Subjects
 
-**Client**
-```bash
-cd client
-npm run build      # outputs static assets to client/dist
-npm run preview    # preview the production build locally
+| Method | Endpoint            | Description    |
+| ------ | ------------------- | -------------- |
+| GET    | `/api/subjects`     | Get subjects   |
+| POST   | `/api/subjects`     | Create subject |
+| GET    | `/api/subjects/:id` | Get subject    |
+| PUT    | `/api/subjects/:id` | Update subject |
+| DELETE | `/api/subjects/:id` | Delete subject |
+
+---
+
+### Timetable
+
+| Method | Endpoint             | Description    |
+| ------ | -------------------- | -------------- |
+| GET    | `/api/timetable`     | Get timetable  |
+| POST   | `/api/timetable`     | Create lecture |
+| PUT    | `/api/timetable/:id` | Update lecture |
+| DELETE | `/api/timetable/:id` | Delete lecture |
+
+---
+
+### Attendance
+
+The attendance API supports attendance creation, updates, deletion, daily tracking, and attendance history for authenticated users.
+
+Attendance records are user-specific and associated with subjects.
+
+---
+
+### Analytics
+
+| Method | Endpoint                     | Description                      |
+| ------ | ---------------------------- | -------------------------------- |
+| GET    | `/api/analytics/overall`     | Get overall attendance analytics |
+| GET    | `/api/analytics/subjects`    | Get subject-wise analytics       |
+| GET    | `/api/analytics/subject/:id` | Get detailed subject analytics   |
+
+---
+
+### Profile
+
+| Method | Endpoint       | Description               |
+| ------ | -------------- | ------------------------- |
+| GET    | `/api/profile` | Get authenticated profile |
+| PUT    | `/api/profile` | Update profile            |
+
+---
+
+### To-Dos
+
+The To-Do API supports authenticated users in creating, updating, completing, and deleting tasks.
+
+---
+
+## Authentication
+
+Protected endpoints require a JWT token.
+
+Send the token using:
+
+```text
+Authorization: Bearer <token>
 ```
 
-**Server**
-```bash
-cd server
-npm run prisma:generate     # ensure the Prisma Client is generated
-npm run build                # compiles TypeScript to server/dist
-npm start                    # runs the compiled server (node dist/server.js)
-```
+Passwords are securely hashed using bcrypt.
+
+User data is isolated so one user cannot access another user's:
+
+* Subjects
+* Timetable
+* Attendance
+* Analytics
+* To-Dos
+* Profile information
 
 ---
 
 ## Deployment
 
-This project deploys as two independent services plus a database.
+Attendly can be deployed as:
 
-1. **Database** — provision a PostgreSQL instance (see [PostgreSQL Setup](#postgresql-setup)). Run `npx prisma migrate deploy` against it once (from the `server` directory, with `DATABASE_URL` set) to create the schema.
-2. **Server** — deploy the `server` folder to any Node host (Render, Railway, Fly.io, EC2, etc.).
-   - Build step: `npm install && npm run prisma:generate && npm run build`
-   - Start command: `npm start`
-   - Environment variables: `PORT`, `NODE_ENV=production`, `CLIENT_URL` (your deployed client's origin), `DATABASE_URL`, `JWT_SECRET`, `JWT_EXPIRES_IN`.
-3. **Client** — deploy `client/dist` (after `npm run build`) to any static host (Vercel, Netlify, S3 + CloudFront, etc.). Set `VITE_API_URL` at build time to point at your deployed API.
-   - Because this is a client-side-routed SPA (React Router), configure your static host to rewrite all paths to `index.html` (most platforms call this an "SPA fallback" or "rewrite rule"), otherwise a direct visit to e.g. `/dashboard` will 404 at the host level.
+1. PostgreSQL Database
+2. Node.js Backend
+3. Static React Frontend
 
----
+### Backend Deployment
 
-## Testing Checklist (Phase 2)
-
-- [x] `npm run build` succeeds for the client
-- [x] `npm run build` succeeds for the server
-- [x] No TypeScript errors in client or server
-- [x] No broken imports
-- [x] `POST /api/auth/register` creates a user, hashes the password with bcrypt, returns `{ user, token }` with no `passwordHash`
-- [x] Duplicate email on register returns `409`
-- [x] Invalid email / weak password / missing name on register return `400` with a specific, friendly message
-- [x] `POST /api/auth/login` with correct credentials returns `{ user, token }`
-- [x] `POST /api/auth/login` with wrong password or unknown email returns a generic `401` (no account enumeration)
-- [x] `GET /api/auth/me` returns the user for a valid token, `401` for missing/invalid/expired tokens
-- [x] `POST /api/auth/logout` clears the client-side session
-- [x] Full flow verified end-to-end: **Signup → Dashboard → Logout → Login again**, including a genuine page reload restoring the session via `/api/auth/me`, and an invalid/expired token correctly redirecting to `/login`
-- [x] `/dashboard` redirects unauthenticated visitors to `/login`
-- [x] Navbar shows Login/Get Started when logged out, Go to Dashboard/Logout when logged in
-- [x] Signup and login forms show friendly, field-level validation errors
-- [x] Toast notifications appear for login, signup, and logout
-- [x] All Phase 1 functionality (landing page, `/api/health`, 404 handling, responsive layout) still works unchanged
-
----
-
-## Testing Checklist (Phase 3)
-
-- [x] `npm run build` succeeds for the client and server; no TypeScript errors in either
-- [x] `npx prisma migrate deploy` applies `20260910000000_add_subjects` cleanly on top of `20260908000000_init`
-- [x] `subjects` table has a foreign key to `users(id)` with `ON DELETE CASCADE`, and an index on `userId`
-- [x] Every `/api/subjects*` route requires a valid bearer token (`401` without one)
-- [x] `POST /api/subjects` requires `name`; `code`/`faculty`/`color` are optional; invalid `color` (not a hex code) returns `400`
-- [x] `GET /api/subjects` for User A never returns User B's subjects, and vice versa
-- [x] `GET/PUT/DELETE /api/subjects/:id` for a subject that doesn't exist returns `404`
-- [x] `GET/PUT/DELETE /api/subjects/:id` for a subject owned by a different user returns `403`
-- [x] `PUT /api/subjects/:id` updates only the fields provided, and clears an optional field left blank
-- [x] Deleting a subject is permanent and removes it from the list immediately
-- [x] `/subjects` redirects unauthenticated visitors to `/login` (via the existing `ProtectedRoute`)
-- [x] Empty state, loading skeleton, and error state (with retry) all render correctly on `/subjects`
-- [x] Add/Edit dialog validates input client-side and shows a success toast on save
-- [x] Delete shows a confirmation dialog before removing a subject, then a "Subject deleted." toast
-- [x] Sidebar (Dashboard, Subjects, disabled Timetable/Attendance/Analytics, Profile, Logout) renders on both Dashboard and Subjects pages, with a working responsive drawer on mobile
-- [x] Refreshing the browser on `/subjects` re-fetches and shows previously created subjects (data is persisted in Postgres, not local state)
-- [ ] Verified against a live-networked Prisma install — the sandbox this phase was built in cannot reach `binaries.prisma.sh` to download the query engine, so schema/isolation logic was instead verified directly against a local Postgres instance with equivalent SQL (see note below). Run `npm run prisma:generate` in a normal environment before first boot.
-
-**Note on verification:** all TypeScript (client + server) compiles and both `npm run build`s succeed. The Prisma schema and hand-written migration were applied to a real local PostgreSQL 16 instance and exercised with the same queries the controllers issue — multi-user isolation (403 vs. 404), create/update/delete, clearing an optional field, and cascade delete were all confirmed to behave correctly. What could *not* be verified inside this build environment is booting the actual Express+Prisma server, because generating the real Prisma Client requires downloading its query engine binary from `binaries.prisma.sh`, which this sandbox has no network access to. This is specific to the sandbox, not the code — run `npm run prisma:generate` (as already documented above) on a machine with normal internet access and it will work as expected.
-
----
-
-## Testing Checklist (Phase 4)
-
-- [ ] `npm run prisma:generate` succeeds after installing server dependencies
-- [ ] `npm run prisma:migrate:deploy` applies `20260910193000_add_timetable` without resetting data
-- [ ] `npm run typecheck` and `npm run build` succeed in `server/`
-- [ ] `npm run build` and `npm run lint` succeed in `client/`
-- [ ] Every `/api/timetable*` endpoint returns `401` without a bearer token
-- [ ] `GET /api/timetable` returns only the authenticated user's lectures, including subject details
-- [ ] Creating or changing a lecture to another user's subject is rejected
-- [ ] Invalid day/time values and start times greater than or equal to end times are rejected
-- [ ] Updating/deleting another user's lecture is rejected
-- [ ] Add, edit, delete, loading, error, and empty states work on `/timetable`
-- [ ] Timetable persists after refresh and logout/login because records are stored in PostgreSQL
-- [ ] Existing authentication, dashboard, and Subjects CRUD still work
-
-### Phase 4 migration
-
-For an existing deployed database, do **not** reset it. Apply committed migrations from `server/`:
+Typical build command:
 
 ```bash
 npm install
 npm run prisma:generate
 npm run prisma:migrate:deploy
+npm run build
 ```
 
-No new environment variables were added in Phase 4. The existing `DATABASE_URL`, `JWT_SECRET`, `CLIENT_URL`, and other Phase 2/3 variables remain in use.
+Start command:
+
+```bash
+npm start
+```
+
+Required environment variables:
+
+```text
+PORT
+NODE_ENV
+CLIENT_URL
+DATABASE_URL
+JWT_SECRET
+JWT_EXPIRES_IN
+```
 
 ---
 
-## Architecture Notes for Future Phases
+### Frontend Deployment
 
-- **Subjects (Phase 3):** implemented — `server/src/routes/subjectRoutes.ts`, `server/src/controllers/subjectController.ts`, `server/src/validators/subjectValidators.ts`, and the `Subject` model in `schema.prisma`. Client: `client/src/pages/SubjectsPage.tsx`, `client/src/store/subjectsStore.ts`, `client/src/services/subjectService.ts`, `client/src/components/subjects/`. The shared authenticated shell (`client/src/layouts/AppLayout.tsx` + `client/src/components/layout/Sidebar.tsx`) is designed to wrap every future authenticated page the same way.
-- **Timetable (Phase 4):** implemented — `TimetableLecture` model + additive migration, authenticated `/api/timetable` CRUD, ownership validation, `TimetablePage`, store/service/types/schemas, responsive weekly grid, dialogs, loading/error/empty states, and Sidebar navigation.
-- **Attendance data (Phase 5+):** follow the same established route/controller/validator/Prisma/store/service/page pattern. Phase 4 intentionally does not implement attendance yet.
-- **Token invalidation / real logout:** the current JWT setup is fully stateless. If you need real server-side logout (e.g. "log out of all devices"), add a denylist table (or a `tokenVersion` column on `User`, bumped on logout and checked in `authenticate`) — `server/src/controllers/authController.ts`'s `logout` function is already the single place to wire that in.
-- **Password reset / email verification:** slot into `server/src/routes/authRoutes.ts` and `authController.ts` alongside the existing register/login handlers; the password hashing and JWT utilities in `server/src/utils/` are already reusable for this.
+Build:
 
-## Phase 5 – Attendance
-Attendance records are date-only and use `PRESENT` or `ABSENT`. Scheduled lecture attendance is linked to a timetable lecture; manual records can exist without one. Apply the additive migration with `cd server && npm run prisma:migrate:deploy`, then run `npm run prisma:generate`. The Attendance page supports daily marking, updates, manual records and history.
+```bash
+npm install
+npm run build
+```
+
+Deploy the generated:
+
+```text
+client/dist
+```
+
+Set:
+
+```env
+VITE_API_URL=https://your-api-url.com
+```
+
+For React Router, configure your hosting provider with an SPA fallback so routes correctly resolve to:
+
+```text
+index.html
+```
+
+---
+
+## Testing Checklist
+
+Before deployment, verify:
+
+### Backend
+
+* [ ] Server starts successfully
+* [ ] Prisma Client generates successfully
+* [ ] Database migrations apply successfully
+* [ ] TypeScript compilation succeeds
+* [ ] Authentication works
+* [ ] Protected endpoints reject unauthorized requests
+* [ ] Subjects CRUD works
+* [ ] Timetable CRUD works
+* [ ] Attendance operations work
+* [ ] Analytics uses real database data
+* [ ] Profile update works
+* [ ] To-Do operations work
+
+### Frontend
+
+* [ ] Client builds successfully
+* [ ] Signup works
+* [ ] Login works
+* [ ] Session persists after refresh
+* [ ] Logout works
+* [ ] Subjects work
+* [ ] Timetable works
+* [ ] Attendance works
+* [ ] Analytics works
+* [ ] To-Dos work
+* [ ] Profile works
+* [ ] Settings work
+* [ ] Sidebar navigation works
+* [ ] Mobile navigation works
+* [ ] Toast notifications work
+* [ ] Loading states work
+* [ ] Empty states work
+* [ ] Error states work
+
+---
+
+## Future Scope
+
+The following features can be added in future versions of Attendly.
+
+### Smart Attendance Predictions
+
+* Predict future attendance percentage
+* Show attendance risk warnings
+* Estimate whether a student can meet minimum attendance requirements
+* Forecast attendance based on timetable and previous records
+
+### Notifications and Reminders
+
+* Lecture reminders
+* Attendance marking reminders
+* Low attendance warnings
+* Upcoming task reminders
+* Daily or weekly summaries
+
+### Advanced Analytics
+
+* Monthly attendance reports
+* Weekly attendance trends
+* Semester-wise analytics
+* Downloadable attendance reports
+* PDF report generation
+* CSV export
+* Advanced charts and trends
+
+### Goal Management
+
+* Set attendance goals
+* Track progress toward attendance goals
+* Subject-specific attendance targets
+* Personalized recommendations
+
+### Calendar Integration
+
+* Calendar view for lectures
+* Google Calendar integration
+* Upcoming lecture notifications
+* Exam and assignment reminders
+
+### Academic Task Management
+
+* Assignment deadlines
+* Exam schedules
+* Study plans
+* Task categories
+* Recurring tasks
+* Priority-based reminders
+
+### Profile Improvements
+
+* Direct profile image upload
+* Cloud image storage
+* Account deletion
+* Password change
+* Email verification
+* Password reset
+
+### Security Improvements
+
+* Refresh tokens
+* Token revocation
+* Logout from all devices
+* Email verification
+* Password reset
+* Rate limiting
+* Two-factor authentication
+
+### Social and Collaboration Features
+
+* Share timetables
+* Study group planning
+* Collaborative task lists
+* Classmate reminders
+
+### Progressive Web App
+
+* Install Attendly as an app
+* Offline support
+* Push notifications
+* Background synchronization
+
+### Mobile Application
+
+* Native Android application
+* Native iOS application
+* React Native mobile application
+* Mobile notifications
+
+### Institution Features
+
+* Teacher accounts
+* Classroom management
+* Student attendance reports
+* Department dashboards
+* Administrative analytics
+* Role-based access control
+
+---
+
+## License
+
+This project is intended for educational and academic use.
+
+---
+
+## Author
+
+Bhagyashri Joshi
+
+Developed as a full-stack attendance tracking and academic productivity application using React, Node.js, Express, PostgreSQL, and Prisma.
