@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String             @id @default(uuid())
+  name              String
+  email             String             @unique
+  passwordHash      String
+  profileImage      String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  attendanceRecords AttendanceRecord[]
+  subjects          Subject[]
+  timetableLectures TimetableLecture[]
+  todos             Todo[]
+
+  @@map("users")
+}
+
+model Subject {
+  id                String             @id @default(uuid())
+  userId            String
+  name              String
+  code              String?
+  faculty           String?
+  color             String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  attendanceRecords AttendanceRecord[]
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  timetableLectures TimetableLecture[]
+  todos             Todo[]
+
+  @@index([userId])
+  @@map("subjects")
+}
+
+model TimetableLecture {
+  id                String             @id @default(uuid())
+  userId            String
+  subjectId         String
+  dayOfWeek         String
+  startTime         String
+  endTime           String
+  room              String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  attendanceRecords AttendanceRecord[]
+  subject           Subject            @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([subjectId])
+  @@map("timetable_lectures")
+}
+
+model AttendanceRecord {
+  id                 String            @id @default(uuid())
+  userId             String
+  subjectId          String
+  timetableLectureId String?
+  date               DateTime          @db.Date
+  status             AttendanceStatus
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  subject            Subject           @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  timetableLecture   TimetableLecture? @relation(fields: [timetableLectureId], references: [id])
+  user               User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([subjectId])
+  @@index([date])
+  @@map("attendance_records")
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+}
+
+model Todo {
+  id             String     @id @default(uuid())
+  userId         String
+  title          String
+  priority       TodoPriority @default(LOW)
+  status         TodoStatus @default(PENDING)
+  subjectId      String?
+  attendanceDate DateTime?  @db.Date
+  source         TodoSource @default(MANUAL)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  user           User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject        Subject?   @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([status])
+  @@index([priority])
+  @@index([createdAt])
+  @@index([userId, status])
+  @@index([subjectId])
+  @@map("todos")
+}
+
+enum TodoPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum TodoStatus {
+  PENDING
+  COMPLETED
+}
+
+enum TodoSource {
+  ATTENDANCE
+  MANUAL
+}

@@ -1,0 +1,1 @@
+export function AnalyticsEmptyState(){return <div className="rounded-card border border-border bg-white p-10 text-center"><h2 className="font-display text-xl text-forest-dark">No analytics available yet.</h2><p className="mt-2 text-muted">Start marking attendance to see your progress.</p></div>}

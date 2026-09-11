@@ -1,0 +1,3 @@
+export interface SubjectAttendance {subjectId:string;subjectName:string;subjectCode:string|null;color:string|null;present:number;absent:number;total:number;percentage:number}
+export interface TodayLecture {id:string;subjectId:string;subjectName:string;subjectCode:string|null;color:string|null;startTime:string;endTime:string;room:string|null;status:"PRESENT"|"ABSENT"|null;state:"Completed"|"Upcoming";attendanceId:string|null}
+export interface DashboardData {overallAttendance:number;totalLectures:number;presentLectures:number;absentLectures:number;subjectAttendance:SubjectAttendance[];todayLectures:TodayLecture[]}

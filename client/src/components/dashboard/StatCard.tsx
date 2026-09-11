@@ -1,0 +1,2 @@
+import type { ReactNode } from "react";
+export function StatCard({label,value,icon,accent=false}:{label:string;value:string|number;icon:ReactNode;accent?:boolean}){return <div className="rounded-card border border-border bg-white p-5 shadow-sm"><div className="flex items-start justify-between"><div><p className="text-sm text-muted">{label}</p><p className="mt-2 font-display text-3xl text-forest-dark">{value}{accent?"%":""}</p></div><div className="rounded-xl bg-light-green p-3 text-forest">{icon}</div></div></div>}

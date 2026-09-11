@@ -1,0 +1,11 @@
+import { CheckCircle2, Circle, Edit2, Trash2, CalendarDays, BookOpen } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import type { Todo } from "@/types/todo";
+
+const badge:{[key:string]:string}={HIGH:"bg-peach text-forest-dark",MEDIUM:"bg-cream text-forest-dark",LOW:"bg-light-green text-forest-dark"};
+interface Props{todo:Todo;busy:boolean;onToggle:()=>void;onEdit:()=>void;onDelete:()=>void}
+export function TodoCard({todo,busy,onToggle,onEdit,onDelete}:Props){const completed=todo.status==="COMPLETED";return <article className={`rounded-card border border-border bg-white p-5 transition-opacity ${completed?"opacity-75":""}`}>
+ <div className="flex gap-4"><button type="button" onClick={onToggle} disabled={busy} aria-label={completed?"Mark task pending":"Mark task completed"} className="mt-0.5 shrink-0 text-forest focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest/40 rounded-full">{completed?<CheckCircle2 size={23}/>:<Circle size={23}/>}</button><div className="min-w-0 flex-1"><div className="flex flex-wrap items-start gap-2"><h3 className={`flex-1 font-medium text-forest-dark ${completed?"line-through":""}`}>{todo.title}</h3><span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${badge[todo.priority]}`}>{todo.priority}</span><span className="rounded-full border border-border px-2.5 py-1 text-xs text-muted">{completed?"Completed":"Pending"}</span></div>
+ <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted">{todo.subject&&<span className="inline-flex items-center gap-1"><BookOpen size={14}/>Subject: {todo.subject.name}</span>}{todo.attendanceDate&&<span className="inline-flex items-center gap-1"><CalendarDays size={14}/>Date: {new Date(todo.attendanceDate).toLocaleDateString()}</span>}{todo.source==="ATTENDANCE"&&<span>Added from Attendance</span>}</div></div></div>
+ <div className="mt-4 flex flex-wrap gap-2 border-t border-border pt-4"><Button size="sm" variant={completed?"outline":"primary"} disabled={busy} onClick={onToggle}>{completed?"Mark Pending":"Mark Complete"}</Button><Button size="sm" variant="ghost" disabled={busy} onClick={onEdit}><Edit2 size={15}/>Edit</Button><Button size="sm" variant="ghost" disabled={busy} onClick={onDelete} className="text-[#C0392B]"><Trash2 size={15}/>Delete</Button></div>
+ </article>}

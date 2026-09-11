@@ -1,0 +1,2 @@
+export type SubjectAnalytics={subjectId:string;name:string;code?:string|null;color?:string|null;present:number;absent:number;total:number;percentage:number};
+export type OverallAnalytics={overallPercentage:number;totalPresent:number;totalAbsent:number;totalLectures:number;bestSubject:SubjectAnalytics|null;lowestSubject:SubjectAnalytics|null};export type SubjectDetail={subject:{id:string;name:string;code?:string|null;color?:string|null};present:number;absent:number;total:number;percentage:number;trend:{date:string;percentage:number;status:string}[]};
